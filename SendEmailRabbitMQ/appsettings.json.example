@@ -1,0 +1,26 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "RabbitMQ": {
+    "RabbitURL": "localhost",
+    "Username": "xxx",
+    "Password": "xxx"
+  },
+  "RabbitMqSettings": {
+    "ExchangeName": "SendSMTPTest",
+    "ExchhangeType": "direct",
+    "QueueName": "send_smtp_queue_test",
+    "RouteKey": "send_smtp_queue_test"
+  },
+  "SMTP": {
+    "Host": "smtp.gmail.com",
+    "Port": 587,
+    "Username": "xxx",
+    "Password": "xxx"
+  }
+}

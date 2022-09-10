@@ -1,0 +1,23 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=xxx;Initial Catalog=xxx;User Id=xxx;Password=xxx;"
+  },
+  "RabbitMQ": {
+    "RabbitURL": "localhost",
+    "Username": "xxx",
+    "Password": "xxx"
+  },
+  "RabbitMqSettings": {
+    "ExchangeName": "SendSMTPTest",
+    "ExchhangeType": "direct",
+    "QueueName": "xxx",
+    "RouteKey": "send_smtp_queue_test"
+  }
+}

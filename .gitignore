@@ -1,0 +1,13 @@
+.vs/
+OcletGateway/bin/
+OcletGateway/obj/
+ProductAPI/bin/
+ProductAPI/obj/
+SendEmailRabbitMQ/bin/
+SendEmailRabbitMQ/obj/
+UserAPI/bin/
+UserAPI/obj/
+UserAPI/appsettings.json
+SendEmailRabbitMQ/appsettings.json
+ProductAPI/
+UserAPI/UserAPI.csproj.user
