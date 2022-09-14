@@ -19,15 +19,21 @@ namespace ProductAPI.Controllers
             var productList = productService.GetProductList();
             return productList;
         }
+        [HttpGet("Search/{keyword}")]
+        public async Task<IEnumerable<Product>> ProductElasticSearch(string keyword = "")
+        {
+            var productList = await productService.GetProductElastic(keyword);
+            return productList;
+        }
         [HttpGet("{id}")]
         public Product GetProductById(int id)
         {
             return productService.GetProductById(id);
         }
         [HttpPost]
-        public Product AddProduct(Product product)
+        public async Task<Product> AddProduct(Product product)
         {
-            return productService.AddProduct(product);
+            return await productService.AddProduct(product);
         }
         [HttpPut]
         public Product UpdateProduct(Product product)

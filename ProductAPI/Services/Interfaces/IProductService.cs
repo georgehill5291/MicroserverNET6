@@ -6,7 +6,8 @@ namespace ProductAPI.Services.Interfaces
     {
         public IEnumerable<Product> GetProductList();
         public Product GetProductById(int id);
-        public Product AddProduct(Product product);
+        Task<IEnumerable<Product>> GetProductElastic(string keyword);
+        public Task<Product> AddProduct(Product product);
         public Product UpdateProduct(Product product);
         public bool DeleteProduct(int Id);
     }

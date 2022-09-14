@@ -9,5 +9,4 @@ UserAPI/bin/
 UserAPI/obj/
 UserAPI/appsettings.json
 SendEmailRabbitMQ/appsettings.json
-ProductAPI/
 UserAPI/UserAPI.csproj.user
