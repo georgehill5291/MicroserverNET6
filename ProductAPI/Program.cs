@@ -1,4 +1,5 @@
 using CategoryAPI.Services.Interfaces;
+using ProductAPI.Cache;
 using ProductAPI.Data;
 using ProductAPI.Elasticsearch;
 using ProductAPI.Services;
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddDbContext<DBContextClass>();
 
 builder.Services.AddElasticsearch(builder.Configuration);
