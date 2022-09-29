@@ -10,3 +10,6 @@ UserAPI/obj/
 UserAPI/appsettings.json
 SendEmailRabbitMQ/appsettings.json
 UserAPI/UserAPI.csproj.user
+ProductGrpcService/bin/
+ProductGrpcService/obj/
+bk/

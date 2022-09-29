@@ -1,7 +1,9 @@
-﻿using Nest;
+﻿using Grpc.Net.Client;
+using Nest;
 using ProductAPI.Data;
 using ProductAPI.Models;
 using ProductAPI.Services.Interfaces;
+using ProductGrpcService;
 
 namespace ProductAPI.Services
 {
@@ -10,20 +12,35 @@ namespace ProductAPI.Services
         private readonly DBContextClass _dbContext;
         private readonly IElasticClient _elasticClient;
         private readonly ILogger<ProductService> _logger;
+        private readonly GrpcChannel _channel;
+        private readonly ProductGrpcService.ProductGrpcServiceClient.ProductGrpcServiceClientClient _client;
+        private readonly IConfiguration _configuration;
 
-        public ProductService(DBContextClass dbContext, IElasticClient elasticClient, ILogger<ProductService> logger)
+        public ProductService(DBContextClass dbContext, IElasticClient elasticClient, ILogger<ProductService> logger, IConfiguration configuration)
         {
             _dbContext = dbContext;
             _logger = logger;
             _elasticClient = elasticClient;
+            _configuration = configuration;
+            _channel = GrpcChannel.ForAddress(_configuration.GetValue<string>("GrpcSettings:OfferServiceUrl"));
+            _client = new ProductGrpcService.ProductGrpcServiceClient.ProductGrpcServiceClientClient(_channel);
+
+
         }
-        public IEnumerable<Product> GetProductList()
+        public IEnumerable<Models.Product> GetProductList()
         {
             return _dbContext.Products.ToList();
         }
-        public async Task<IEnumerable<Product>> GetProductElastic(string keyword)
+
+        public async Task<ProductGrpcService.ProductGrpcs> GetProductListViaGrpc()
         {
-            var result = await _elasticClient.SearchAsync<Product>(
+            var result = _client.GetOfferList(new Empty { });
+            return null;
+        }
+
+        public async Task<IEnumerable<Models.Product>> GetProductElastic(string keyword)
+        {
+            var result = await _elasticClient.SearchAsync<Models.Product>(
                              s => s.Query(
                                  q => q.QueryString(
                                      d => d.Query('*' + keyword + '*')
@@ -33,12 +50,12 @@ namespace ProductAPI.Services
             return result.Documents.ToList();
         }
 
-        public Product GetProductById(int id)
+        public Models.Product GetProductById(int id)
         {
             return _dbContext.Products.Where(x => x.ProductId == id).FirstOrDefault();
         }
 
-        public async Task<Product> AddProduct(Product product)
+        public async Task<Models.Product> AddProduct(Models.Product product)
         {
             var result = _dbContext.Products.Add(product);
             _dbContext.SaveChanges();
@@ -56,7 +73,7 @@ namespace ProductAPI.Services
             return result.Entity;
         }
 
-        public Product UpdateProduct(Product product)
+        public Models.Product UpdateProduct(Models.Product product)
         {
             var result = _dbContext.Products.Update(product);
             _dbContext.SaveChanges();

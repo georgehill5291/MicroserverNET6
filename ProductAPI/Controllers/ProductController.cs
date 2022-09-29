@@ -25,6 +25,12 @@ namespace ProductAPI.Controllers
             var productList = await productService.GetProductElastic(keyword);
             return productList;
         }
+        [HttpGet("grpc")]
+        public async Task<ProductGrpcService.ProductGrpcs> GetProductListViaGrpc()
+        {
+            var productList = await productService.GetProductListViaGrpc();
+            return productList;
+        }
         [HttpGet("{id}")]
         public Product GetProductById(int id)
         {

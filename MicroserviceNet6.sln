@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAPI", "UserAPI\UserAPI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcletGateway", "OcletGateway\OcletGateway.csproj", "{9E95BB8D-C9BF-4164-A3E2-1D15BDE31B10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendEmailRabbitMQ", "SendEmailRabbitMQ\SendEmailRabbitMQ.csproj", "{2C8183CF-4BAD-41ED-AF2D-E6AD1FC39DFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendEmailRabbitMQ", "SendEmailRabbitMQ\SendEmailRabbitMQ.csproj", "{2C8183CF-4BAD-41ED-AF2D-E6AD1FC39DFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductGrpcService", "ProductGrpcService\ProductGrpcService.csproj", "{2045C447-0343-4F4C-A671-75D99574A971}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{2C8183CF-4BAD-41ED-AF2D-E6AD1FC39DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C8183CF-4BAD-41ED-AF2D-E6AD1FC39DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C8183CF-4BAD-41ED-AF2D-E6AD1FC39DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2045C447-0343-4F4C-A671-75D99574A971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2045C447-0343-4F4C-A671-75D99574A971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2045C447-0343-4F4C-A671-75D99574A971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2045C447-0343-4F4C-A671-75D99574A971}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{09FE5D42-AEF8-4468-83C1-73A93E5D2D62} = {FD913DEF-1033-4D40-926C-D908840B3DD5}
 		{98894BD3-1C71-4E1C-93D2-91CFAD9BB228} = {FD913DEF-1033-4D40-926C-D908840B3DD5}
 		{2C8183CF-4BAD-41ED-AF2D-E6AD1FC39DFE} = {FD913DEF-1033-4D40-926C-D908840B3DD5}
+		{2045C447-0343-4F4C-A671-75D99574A971} = {FD913DEF-1033-4D40-926C-D908840B3DD5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2066ED8-27D7-4FDC-AD24-990BE5382861}
