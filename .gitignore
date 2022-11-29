@@ -13,3 +13,8 @@ UserAPI/UserAPI.csproj.user
 ProductGrpcService/bin/
 ProductGrpcService/obj/
 bk/
+SendMessageViaMassTransit/bin/
+SendMessageViaMassTransit/obj/
+SendMessageViaMassTransit/wwwroot/
+UserAPI.Test/bin/
+UserAPI.Test/obj/

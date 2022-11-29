@@ -1,20 +1,35 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Org.BouncyCastle.Crypto.Generators;
 using RabbitMQ.Client;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using UserAPI.Authorization;
 using UserAPI.Data;
+using UserAPI.Filter;
+using UserAPI.Helpers;
 using UserAPI.Models;
+using UserAPI.Models.Authenticate;
 using UserAPI.Services.Interfaces;
 using UserAPI.Utility;
 
 namespace UserAPI.Services
 {
+    //[ExcludeFromCodeCoverage]
     public class UserService : IUserService
     {
         private readonly DbContextClass _dbContext;
+        private IJwtUtils _jwtUtils;
+        private readonly AppSettings _appSettings;
 
-        public UserService(DbContextClass dbContext)
+        public UserService(DbContextClass dbContext,
+                           IJwtUtils jwtUtils,
+                           IOptions<AppSettings> appSettings)
         {
             _dbContext = dbContext;
+            _jwtUtils = jwtUtils;
+            _appSettings = appSettings.Value;
         }
 
         public User AddUser(User userModel)
@@ -97,6 +112,20 @@ namespace UserAPI.Services
             var result = _dbContext.Users.Update(product);
             _dbContext.SaveChanges();
             return result.Entity;
+        }
+
+        public AuthenticateResponse Authenticate(AuthenticateRequest model)
+        {
+            var user = _dbContext.Users.SingleOrDefault(x => x.UserName == model.Username);
+
+            // validate
+            //if (user == null || !BCrypt.Verify(model.Password, user.PasswordHash))
+            //    throw new AppException("Username or password is incorrect");
+
+            // authentication successful so generate jwt token
+            var jwtToken = _jwtUtils.GenerateJwtToken(user);
+
+            return new AuthenticateResponse(user, jwtToken);
         }
     }
 }
